@@ -16,9 +16,9 @@ function App() {
         <Topbar />
 
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/questions" element={<QuestionsListPage />} />
-          <Route path="/questions/new" element={<QuestionsFormPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<QuestionsListPage />} />
+          <Route path="/questions" element={<QuestionsFormPage />} />
         </Routes>
 
         <ToastContainer />

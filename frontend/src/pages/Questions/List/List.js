@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Stack  from 'react-bootstrap/Stack';
@@ -7,18 +7,21 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import { QuestionsList } from "../../../Questions/components";
+import { QuestionContext } from "../../../Questions/context";
 import { QuestionsService } from "../../../shared/services";
 
 const questionsService = new QuestionsService();
 
 export default function QuestionsListPage() {
+  const { setQuestions } = useContext(QuestionContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     questionsService.fetchAll().then((resp) => {
-      console.log('v', resp);
+      const { data } = resp;
+      setQuestions(data);
     });
-  }, []);
+  }, [setQuestions]);
 
   return (
     <Container>
@@ -27,7 +30,7 @@ export default function QuestionsListPage() {
           <h1>Questions list</h1>
         </Col>
         <Col style={{ textAlign: 'right' }}>
-          <Button variant="primary" onClick={() => navigate('/questions/new')}>
+          <Button variant="primary" onClick={() => navigate('/questions')}>
             Create new question
           </Button>
         </Col>

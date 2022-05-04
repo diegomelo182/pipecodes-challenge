@@ -43,8 +43,8 @@ function filterBuilder(values) {
 
 function paginationBuilder(page, limit) {
   let skip = 0;
-  if (+page > 0) {
-    skip = skip * +limit;
+  if (page > 1) {
+    skip = (+page - 1) * parseInt(limit);
   }
   return { limit, skip };
 };

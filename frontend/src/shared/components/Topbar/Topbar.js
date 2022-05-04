@@ -13,7 +13,7 @@ export default function Topbar() {
         <Navbar.Brand onClick={() => { navigate('/') }}>Pipecodes Challenge</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link onClick={() => { navigate('/') }}>Home</Nav.Link>
-          <Nav.Link onClick={() => { navigate('questions') }}>Questions</Nav.Link>
+          <Nav.Link onClick={() => { navigate('questions') }}>Questions form</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
