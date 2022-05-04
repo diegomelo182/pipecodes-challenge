@@ -22,12 +22,12 @@ router.post('/', async function(req, res, _next) {
   const validation = question.validateSync();
 
   if (Object.keys(validation?.errors || {}).length > 0) {
-    return res.json({ errors: validation.errors }, 400);
+    return res.status(400).json({ errors: validation.errors });
   }
 
   const result = await question.save();
 
-  res.json({ created: result }, 201);
+  res.status(201).json({ created: result });
 });
 
 function filterBuilder(values) {

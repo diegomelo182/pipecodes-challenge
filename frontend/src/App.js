@@ -1,22 +1,29 @@
-import './App.css';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+
+import { HomePage, QuestionsFormPage, QuestionsListPage } from './pages';
+import { Topbar } from "./shared/components";
+import { QuestionContextProvider } from "./Questions/context";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QuestionContextProvider>
+      <BrowserRouter>
+        <Topbar />
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/questions" element={<QuestionsListPage />} />
+          <Route path="/questions/new" element={<QuestionsFormPage />} />
+        </Routes>
+
+        <ToastContainer />
+      </BrowserRouter>
+    </QuestionContextProvider>
   );
 }
 

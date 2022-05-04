@@ -14,10 +14,15 @@ const QuestionSchema = new mongoose.Schema(
       type: Date,
       required: true,
       validate: {
-        validator: function(v) {
-          return /\d{3}-\d{3}-\d{4}/.test(v);
+        validator: function(date) {
+          const now = new Date();
+          const dateObj = new Date(date);
+          now.setHours(0,0,0,0);
+          dateObj.setHours(0,0,0,0);
+
+          return dateObj.getTime() > now.getTime();
         },
-        message: props => `${props.value} is not a valid phone number!`
+        message: props => `must be greater than following date`
       },
     },
     observations: {

@@ -8,14 +8,14 @@ require('dotenv').config()
 
 var app = express();
 
-require('./routes')(app); // load routes
-
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+require('./routes')(app); // load routes
 
 mongoose.connect(
   process.env.MONGODB_CONNECTION,
